@@ -1,10 +1,13 @@
 const express = require('express');
 const hbs = require('hbs');
 var app = express();
+const port = process.env.PORT ||3000;
 hbs.registerPartials(__dirname+'/Views/partials');
 hbs.registerHelper('screamit',(text)=>{
     return text.toUpperCase();
 });
+
+
 app.set('View Engine','hbs');
 app.use(express.static(__dirname+'/public'));
 app.use((req,res,next)=>{
@@ -47,5 +50,5 @@ app.get('/bad',(req,res)=>
         }
     )
 });
-app.listen(8080);
+app.listen(port);
 console.log('Server running on port 8080');
